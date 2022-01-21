@@ -1,4 +1,4 @@
-ESTM-related files
+ESTM input files
 -----------------------------
 
 
@@ -7,7 +7,7 @@ SUEWS_ESTMCoefficients.txt
 
 **Note ESTM is under development in this release and should not be used!**
 
-The Element Surface Temperature Method (ESTM) (Offerle et al., 2005)
+The Element Surface Temperature Method (ESTM) :cite:`O05`
 calculates the net storage heat flux from surface temperatures. In the
 method the three-dimensional urban volume is reduced to four 1-d
 elements (i.e. building roofs, walls, and internal mass and ground
@@ -22,7 +22,7 @@ maximum five layers and each layer has three parameters tied to it:
 thickness (x), thermal conductivity (k), volumetric heat capacity
 (rhoCp).
 
-If ESTM is used (QSchoice=4), the files
+If ESTM is used (`StorageHeatMethod` =4), the files
 `SUEWS_ESTMCoefficients.txt`,
 `ESTMinput.nml` and
 `SSss_YYYY_ESTM_Ts_data_tt.txt`

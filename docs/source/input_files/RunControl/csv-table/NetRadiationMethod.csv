@@ -21,3 +21,6 @@ SSss_YYYY_NARPOut.txt file produced.
 Zenith angle accounted for in albedo calculation.
 SSss_YYYY_NARPOut.txt file produced.
 |NotRecmd|"
+1001,"Q* modelled with `SPARTACUS-Surface (SS)` but with L↓ modelled as in ``1``. |EXP|"
+1002,"Q* modelled with `SPARTACUS-Surface (SS)` but with L↓ modelled as in ``2``. |EXP|"
+1003,"Q* modelled with `SPARTACUS-Surface (SS)` but with L↓ modelled as in ``3``. |EXP|"

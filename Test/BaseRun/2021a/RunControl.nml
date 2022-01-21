@@ -1,7 +1,7 @@
 &RunControl
 CBLUse=0
 SnowUse=1
-NetRadiationMethod=3 ! anything larger than 1000 for SU
+NetRadiationMethod=1003 ! anything larger than 1000 for SU
 BaseTMethod=1
 EmissionsMethod=1
 StorageHeatMethod=1

@@ -11,7 +11,7 @@ What is SUEWS?
 ---------------
 
 Surface Urban Energy and Water Balance Scheme (**SUEWS**) :cite:`J11,W16` is a neighbourhood/local-scale urban land surface model to simulate the urban radiation, energy and water balances using only commonly measured meteorological variables and information about the surface cover.
-SUEWS utilizes an evaporation-interception approach :cite:`GO91`, similar to that used in forests, to model evaporation from urban surfaces.
+SUEWS utilises an evaporation-interception approach :cite:`GO91`, similar to that used in forests, to model evaporation from urban surfaces.
 
 
 .. figure:: /assets/img/SUEWS_Overview_s.png

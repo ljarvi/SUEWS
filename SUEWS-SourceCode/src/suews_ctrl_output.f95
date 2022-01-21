@@ -627,21 +627,21 @@ MODULE ctrl_output
       varAttr('Lup', 'W m-2', f104, 'lw upward flux from spartacus', aA, 'SPARTACUS', 0), &
       varAttr('Kup', 'W m-2', f104, 'bulk albedo from spartacus', aA, 'SPARTACUS', 0), &
       varAttr('Qn', 'W m-2', f104, 'bulk emissivity from spartacus', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs1', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 1', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs2', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 2', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs3', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 3', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs4', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 4', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs5', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 5', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs6', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 6', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs7', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 7', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs8', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 8', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs9', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 9', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs10', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 10', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs11', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 11', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs12', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 12', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs13', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 13', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs14', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 14', aA, 'SPARTACUS', 0), &
-      varAttr('LClAirAbs15', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 15', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs1', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 1', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs2', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 2', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs3', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 3', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs4', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 4', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs5', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 5', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs6', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 6', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs7', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 7', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs8', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 8', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs9', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 9', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs10', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 10', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs11', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 11', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs12', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 12', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs13', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 13', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs14', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 14', aA, 'SPARTACUS', 0), &
+      varAttr('LCAAbs15', 'W m-2', f104, 'lw clear air absorption - SPARTACUS level 15', aA, 'SPARTACUS', 0), &
       varAttr('LWallNet1', 'W m-2', f104, 'lw net radiation at wall - SPARTACUS level 1', aA, 'SPARTACUS', 0), &
       varAttr('LWallNet2', 'W m-2', f104, 'lw net radiation at wall - SPARTACUS level 2', aA, 'SPARTACUS', 0), &
       varAttr('LWallNet3', 'W m-2', f104, 'lw net radiation at wall - SPARTACUS level 3', aA, 'SPARTACUS', 0), &
@@ -690,21 +690,21 @@ MODULE ctrl_output
       varAttr('LTopNet', 'W m-2', f104, 'lw net radiation at top-of-canopy', aA, 'SPARTACUS', 0), &
       varAttr('LGrndNet', 'W m-2', f104, 'lw net radiation at ground', aA, 'SPARTACUS', 0), &
       varAttr('LTopDn', 'W m-2', f104, 'lw downwelling radiation at top-of-canopy', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs1', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 1', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs2', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 2', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs3', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 3', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs4', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 4', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs5', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 5', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs6', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 6', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs7', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 7', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs8', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 8', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs9', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 9', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs10', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 10', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs11', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 11', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs12', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 12', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs13', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 13', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs14', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 14', aA, 'SPARTACUS', 0), &
-      varAttr('KClAirAbs15', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 15', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs1', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 1', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs2', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 2', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs3', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 3', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs4', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 4', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs5', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 5', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs6', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 6', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs7', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 7', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs8', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 8', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs9', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 9', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs10', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 10', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs11', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 11', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs12', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 12', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs13', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 13', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs14', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 14', aA, 'SPARTACUS', 0), &
+      varAttr('KCAAbs15', 'W m-2', f104, 'sw clear air absorption - SPARTACUS level 15', aA, 'SPARTACUS', 0), &
       varAttr('KWallNet1', 'W m-2', f104, 'sw net radiation at wall - SPARTACUS level 1', aA, 'SPARTACUS', 0), &
       varAttr('KWallNet2', 'W m-2', f104, 'sw net radiation at wall - SPARTACUS level 2', aA, 'SPARTACUS', 0), &
       varAttr('KWallNet3', 'W m-2', f104, 'sw net radiation at wall - SPARTACUS level 3', aA, 'SPARTACUS', 0), &

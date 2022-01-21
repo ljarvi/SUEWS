@@ -783,13 +783,17 @@ CONTAINS
             dectime, ZENITH_deg, Ts_iter, avKdn, Temp_C, avRH, ea_hPa, qn1_obs, &
             SnowAlb_prev, snowFrac_prev, DiagQN, &
             NARP_TRANS_SITE, NARP_EMIS_SNOW, IceFrac_prev, sfr, emis, &
-            alb_spc, emis_spc, lw_emission_spc, &
-            alb_prev, albDecTr_id_next, albEveTr_id_next, albGrass_id_next, &!input
-            alb_next, &!output
-            ldown, fcld, &!output
+            alb_prev, albDecTr_id_next, albEveTr_id_next, albGrass_id_next, &
+            LAI_id, &!input
+            alb_next, ldown, fcld, &!output
             qn, qn_snowfree, qn_snow, kclear, kup, lup, tsurf, &
             qn_ind_snow, kup_ind_snow, Tsurf_ind_snow, Tsurf_ind, &
-            albedo_snow, snowFrac_next, SnowAlb_next)
+            albedo_snow, snowFrac_next, SnowAlb_next, &
+            alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc, &
+            top_net_lw_spc, ground_net_lw_spc, top_dn_lw_spc, &
+            clear_air_abs_lw_spc, wall_net_lw_spc, roof_net_lw_spc, roof_in_lw_spc, &
+            top_dn_dir_sw_spc, top_net_sw_spc, ground_dn_dir_sw_spc, ground_net_sw_spc, &
+            clear_air_abs_sw_spc, wall_net_sw_spc, roof_net_sw_spc, roof_in_sw_spc)
 
          ! =================STORAGE HEAT FLUX=======================================
          CALL SUEWS_cal_Qs( &
@@ -954,18 +958,6 @@ CONTAINS
          !==============main calculation end=======================
       END DO ! end iteration for tsurf calculations
 
-      IF (NetRadiationMethod > 1000) THEN
-         CALL test_rad_spc( &
-            sfr, zenith_deg, TSfc_C, avKdn, ldown, temp_c, alb_next, emis, &!input
-            alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc, &
-            clear_air_abs_lw_spc, wall_net_lw_spc, roof_net_lw_spc, &
-            roof_in_lw_spc, top_net_lw_spc, ground_net_lw_spc, &
-            top_dn_lw_spc, &
-            clear_air_abs_sw_spc, wall_net_sw_spc, roof_net_sw_spc, &
-            roof_in_sw_spc, top_dn_dir_sw_spc, top_net_sw_spc, &
-            ground_dn_dir_sw_spc, ground_net_sw_spc)!output
-      END IF
-
       !==============================================================
       ! Calculate diagnostics: these variables are decoupled from the main SUEWS calculation
 
@@ -1083,38 +1075,6 @@ CONTAINS
          SnowAlb, SnowDens, &
          a1, a2, a3, &
          DailyStateLine)!out
-
-         !!! printing !!!
-
-      !PRINT *,'it:',it
-
-      !PRINT *,'sfr:',sfr
-
-      !PRINT *,'alb:'
-      !PRINT *,alb
-      !PRINT *,'weighted albedo from alb:',(alb(1)*sfr(PavSurf)+alb(2)*sfr(BldgSurf)+alb(3)*sfr(ConifSurf)+alb(4)*sfr(DecidSurf)+&
-      !                                    alb(5)*sfr(GrassSurf)+alb(6)*sfr(BSoilSurf)+alb(7)*sfr(WaterSurf))
-      !PRINT *,'alb_spc:',alb_spc
-
-      !PRINT *,'emis:'
-      !PRINT *,emis
-      !PRINT *,'weighted emissivity from emis:',(emis(1)*sfr(PavSurf)+emis(2)*sfr(BldgSurf)+emis(3)*sfr(ConifSurf)+&
-      !                                          emis(4)*sfr(DecidSurf)+emis(5)*sfr(GrassSurf)+emis(6)*sfr(BSoilSurf)+&
-      !                                          emis(7)*sfr(WaterSurf))
-      !PRINT *,'emis_spc:',emis_spc
-
-      !PRINT *,'kup:',kup
-      !PRINT *,'sw_up_spc:',sw_up_spc
-
-      !PRINT *,'lup:',lup
-      !PRINT *,'lw_up_spc:',lw_up_spc
-      !PRINT *,'lw_emission_spc:',lw_emission_spc
-
-      !PRINT *,'avkdn',avkdn
-      !PRINT *,'ldown',ldown
-
-      !PRINT *,'qn:',qn
-      !PRINT *,'qn_spc:',qn_spc
 
       !==============translation end ================
 
@@ -1379,13 +1339,17 @@ CONTAINS
       dectime, ZENITH_deg, Tsurf_0, avKdn, Temp_C, avRH, ea_hPa, qn1_obs, &
       SnowAlb_prev, snowFrac_prev, DiagQN, &
       NARP_TRANS_SITE, NARP_EMIS_SNOW, IceFrac, sfr, emis, &
-      alb_spc, emis_spc, lw_emission_spc, &
-      alb_prev, albDecTr_id, albEveTr_id, albGrass_id, &!input
-      alb_next, &!output
-      ldown, fcld, &!output
+      alb_prev, albDecTr_id, albEveTr_id, albGrass_id, &
+      LAI_id, &!input
+      alb_next, ldown, fcld, &!output
       qn, qn_snowfree, qn_snow, kclear, kup, lup, tsurf, &
       qn_ind_snow, kup_ind_snow, Tsurf_ind_snow, Tsurf_ind, &
-      albedo_snow, snowFrac_next, SnowAlb_next)
+      albedo_snow, snowFrac_next, SnowAlb_next, &
+      alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc, &
+      top_net_lw_spc, ground_net_lw_spc, top_dn_lw_spc, &
+      clear_air_abs_lw_spc, wall_net_lw_spc, roof_net_lw_spc, roof_in_lw_spc, &
+      top_dn_dir_sw_spc, top_net_sw_spc, ground_dn_dir_sw_spc, ground_net_sw_spc, &
+      clear_air_abs_sw_spc, wall_net_sw_spc, roof_net_sw_spc, roof_in_sw_spc)
       USE NARP_MODULE, ONLY: RadMethod, NARP
 
       IMPLICIT NONE
@@ -1415,7 +1379,8 @@ CONTAINS
       REAL(KIND(1D0)), INTENT(in)::NARP_EMIS_SNOW
       REAL(KIND(1D0)), INTENT(in)::NARP_TRANS_SITE
       REAL(KIND(1D0)), INTENT(in)::tau_a, tau_f, SnowAlbMax, SnowAlbMin
-      REAL(KIND(1D0)), INTENT(in)::alb_spc, emis_spc, lw_emission_spc
+
+      REAL(KIND(1D0)), DIMENSION(nvegsurf), INTENT(in)::LAI_id
 
       REAL(KIND(1D0)), DIMENSION(nsurf), INTENT(in):: IceFrac
       REAL(KIND(1D0)), DIMENSION(nsurf), INTENT(in):: sfr
@@ -1463,6 +1428,15 @@ CONTAINS
       INTEGER :: NetRadiationMethod_use
       INTEGER::AlbedoChoice, ldown_option
 
+      ! SPARTACUS output variables
+      REAL(KIND(1D0)), INTENT(OUT) ::alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc
+      REAL(KIND(1D0)), INTENT(OUT) :: top_net_lw_spc, ground_net_lw_spc, top_dn_lw_spc
+      REAL(KIND(1D0)), DIMENSION(15), INTENT(OUT)::clear_air_abs_lw_spc, wall_net_lw_spc, roof_net_lw_spc, &
+                                                    roof_in_lw_spc
+      REAL(KIND(1D0)), INTENT(OUT) ::top_dn_dir_sw_spc, top_net_sw_spc, ground_dn_dir_sw_spc, ground_net_sw_spc
+      REAL(KIND(1D0)), DIMENSION(15), INTENT(OUT)::clear_air_abs_sw_spc, wall_net_sw_spc, roof_net_sw_spc, &
+                                                    roof_in_sw_spc
+
       ! translate values
       alb = alb_prev
 
@@ -1501,13 +1475,25 @@ CONTAINS
 
          CALL NARP( &
             nsurf, sfr, SnowFrac, alb, emis, IceFrac, &! input:
-            alb_spc, emis_spc, lw_emission_spc, &
             NARP_TRANS_SITE, NARP_EMIS_SNOW, &
             dectime, ZENITH_deg, tsurf_0, avKdn, Temp_C, avRH, ea_hPa, qn1_obs, ldown_obs, &
             SnowAlb, &
             AlbedoChoice, ldown_option, NetRadiationMethod_use, DiagQN, &
             qn, qn_snowfree, qn_snow, kclear, kup, LDown, lup, fcld, tsurf, &! output:
             qn_ind_snow, kup_ind_snow, Tsurf_ind_snow, Tsurf_ind, albedo_snowfree, albedo_snow)
+
+         IF (NetRadiationMethod > 1000) THEN
+            CALL SPARTACUS( &
+               sfr, zenith_deg, tsurf_0, avKdn, ldown, temp_c, alb, emis, LAI_id, &!input
+               alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc, &!output
+               clear_air_abs_lw_spc, wall_net_lw_spc, roof_net_lw_spc, &
+               roof_in_lw_spc, top_net_lw_spc, ground_net_lw_spc, &
+               top_dn_lw_spc, &
+               clear_air_abs_sw_spc, wall_net_sw_spc, roof_net_sw_spc, &
+               roof_in_sw_spc, top_dn_dir_sw_spc, top_net_sw_spc, &
+               ground_dn_dir_sw_spc, ground_net_sw_spc, &
+               qn, kup, lup)
+         END IF
 
       ELSE ! NetRadiationMethod==0
          SnowFrac = snowFrac_obs
@@ -3665,7 +3651,7 @@ CONTAINS
       ! calculate surface/skin temperature
       ! TS, 23 Oct 2019
       IMPLICIT NONE
-      REAL(KIND(1D0)), INTENT(in) :: qh ! sensible heat flux [W m-2]
+      REAL(KIND(1D0)), INTENT(in) ::  qh ! sensible heat flux [W m-2]
       REAL(KIND(1D0)), INTENT(in) ::  avdens ! air density [kg m-3]
       REAL(KIND(1D0)), INTENT(in) ::  avcp !air heat capacity [J m-3 K-1]
       REAL(KIND(1D0)), INTENT(in) ::  RA !Aerodynamic resistance [s m^-1]
@@ -3676,17 +3662,16 @@ CONTAINS
       tsfc_C = qh/(avdens*avcp)*RA + temp_C
    END FUNCTION cal_tsfc
 
-   !!!!!!!!!!!!!! SPARTACUS !!!!!!!!!!!!!
-
-   SUBROUTINE test_rad_spc( &
-      sfr, zenith_deg, TSfc_C, avKdn, ldown, temp_c, alb_next, emis, &!input
-      alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc, &
+   SUBROUTINE SPARTACUS( &
+      sfr, zenith_deg, tsurf_0, avKdn, ldown, temp_c, alb, emis, LAI_id, &!input:
+      alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc, &!output:
       clear_air_abs_lw_spc, wall_net_lw_spc, roof_net_lw_spc, &
       roof_in_lw_spc, top_net_lw_spc, ground_net_lw_spc, &
       top_dn_lw_spc, &
       clear_air_abs_sw_spc, wall_net_sw_spc, roof_net_sw_spc, &
       roof_in_sw_spc, top_dn_dir_sw_spc, top_net_sw_spc, &
-      ground_dn_dir_sw_spc, ground_net_sw_spc)!output
+      ground_dn_dir_sw_spc, ground_net_sw_spc, &
+      qn, kup, lup)
       USE parkind1, ONLY: jpim, jprb
       USE radsurf_interface, ONLY: radsurf
       USE radsurf_config, ONLY: config_type
@@ -3704,20 +3689,22 @@ CONTAINS
       !!!!!!!!!!!!!! Set objects and variables !!!!!!!!!!!!!!
 
       ! Input parameters and variables from SUEWS
-      REAL(KIND(1D0)), INTENT(IN):: zenith_deg, TSfc_C, &
+      REAL(KIND(1D0)), INTENT(IN):: zenith_deg, tsurf_0, & ! tsurf_0 and temp_C need to be made vertically distributed
                                     avKdn, ldown, temp_C
-      REAL(KIND(1D0)), DIMENSION(NSURF), INTENT(IN)::sfr, alb_next, emis
+      REAL(KIND(1D0)), DIMENSION(NSURF), INTENT(IN)::sfr, alb, emis
+      REAL(KIND(1D0)), DIMENSION(NVegSurf), INTENT(IN)::LAI_id
 
       ! SPARTACUS configuration parameters
       INTEGER(kind=jpim) :: ncol, ntotlay
       INTEGER(kind=jpim), ALLOCATABLE:: i_representation(:)
       INTEGER(kind=jpim), ALLOCATABLE:: nlay(:)
       INTEGER :: istartcol, iendcol
-      INTEGER :: jrepeat, ilay, jcol
+      INTEGER :: jrepeat, ilay, jlay, jcol
 
       ! output variables
       REAL(KIND(1D0)), INTENT(OUT) ::alb_spc, emis_spc, lw_emission_spc, lw_up_spc, sw_up_spc, qn_spc
-      REAL(KIND(1D0)), INTENT(OUT) :: top_net_lw_spc, ground_net_lw_spc, top_dn_lw_spc
+      REAL(KIND(1D0)), INTENT(OUT) ::top_net_lw_spc, ground_net_lw_spc, top_dn_lw_spc
+      REAL(KIND(1D0)), INTENT(OUT) ::qn, kup, lup
       REAL(KIND(1D0)), DIMENSION(15), INTENT(OUT)::clear_air_abs_lw_spc, wall_net_lw_spc, roof_net_lw_spc, &
                                                     roof_in_lw_spc
       REAL(KIND(1D0)), INTENT(OUT) ::top_dn_dir_sw_spc, top_net_sw_spc, ground_dn_dir_sw_spc, ground_net_sw_spc
@@ -3739,73 +3726,86 @@ CONTAINS
          &     lw_flux, &      ! Total lw canopy fluxes
          &     sw_flux         ! Total sw canopy fluxes
 
-      ! Top-of-canopy downward radiation, all dimensioned (nspec,ncol)
+      ! Top-of-canopy downward radiation, all dimensioned (nspec, ncol)
       REAL(kind=jprb), ALLOCATABLE &
            &  :: top_flux_dn_sw(:, :), &        ! Total shortwave (direct+diffuse)
            &     top_flux_dn_direct_sw(:, :), & ! ...diffuse only
            &     top_flux_dn_lw(:, :)           ! longwave
 
-      ! variables to hold surface temperature and air temperature in Kelvin
-      REAL(KIND(1D0)) ::TSfc_K, tair_K
-      ! variable to hold top-of-canopy diffuse sw downward
+      ! surface temperature and air temperature in Kelvin
+      REAL(KIND(1D0)) ::tsurf_0_K, tair_K
+      ! top-of-canopy diffuse sw downward
       REAL(KIND(1D0)) ::top_flux_dn_diffuse_sw
-      ! variables to hold plan area weighted albedo and emissivity of surfaces not including buildings and trees
+      ! plan area weighted albedo and emissivity of surfaces not including buildings and trees
       REAL(KIND(1D0)) ::alb_no_tree_bldg, emis_no_tree_bldg
-      ! variable to hold the vegetation emissivity
+      ! vegetation emissivity
       REAL(KIND(1D0)) ::veg_emis
+      ! area weighted LAI of trees
+      REAL(kind=jprb), ALLOCATABLE ::LAI_av(:)
+      ! area weighted LAI of trees in each layer
+      REAL(kind=jprb), ALLOCATABLE ::LAI_av_z(:)
+      ! depth of the vegetated layer
+      REAL(kind=jprb), ALLOCATABLE ::veg_depth(:)
 
       INTEGER :: nlayers, n_vegetation_region_urban, nsw, nlw, nspec, &
                  n_stream_sw_urban, n_stream_lw_urban
       REAL(KIND(1D0)) :: sw_dn_direct_frac, air_ext_sw, air_ssa_sw, &
                          veg_ssa_sw, air_ext_lw, air_ssa_lw, veg_ssa_lw, &
+                         veg_fsd_const, veg_contact_fraction_const, &
                          ground_albedo_dir_mult_fact
       LOGICAL :: use_sw_direct_albedo
-      REAL(kind=jprb), ALLOCATABLE :: height(:, :), building_frac(:, :), veg_frac(:, :), &
-                                      building_scale(:, :), veg_scale(:, :), veg_ext(:, :), &
-                                      veg_fsd(:, :), veg_contact_fraction(:, :), &
+      REAL(kind=jprb), ALLOCATABLE :: height(:), building_frac(:), veg_frac(:), &
+                                      building_scale(:), veg_scale(:), veg_ext(:), &
+                                      veg_fsd(:), veg_contact_fraction(:), &
                                       roof_albedo(:, :), wall_albedo(:, :), roof_albedo_dir_mult_fact(:, :), &
-                                      wall_specular_frac(:, :), roof_emissivity(:, :, :), &
-                                      wall_emissivity(:, :, :)
+                                      wall_specular_frac(:, :), roof_emissivity(:, :), &
+                                      wall_emissivity(:, :)
 
-      NAMELIST /Spartacus/ nlayers, use_sw_direct_albedo, n_vegetation_region_urban, &
-         nsw, nlw, nspec, n_stream_sw_urban, n_stream_lw_urban, sw_dn_direct_frac, &
-         air_ext_sw, air_ssa_sw, veg_ssa_sw, air_ext_lw, air_ssa_lw, &
-         veg_ssa_lw, ground_albedo_dir_mult_fact
-      NAMELIST /Spartacus_Profiles/ height, building_frac, veg_frac, &
-         building_scale, veg_scale, veg_ext, &
-         veg_fsd, veg_contact_fraction, &
-         roof_albedo, wall_albedo, roof_albedo_dir_mult_fact, &
-         wall_specular_frac, roof_emissivity, &
-         wall_emissivity
+      NAMELIST /Spartacus_Settings/ nlayers, use_sw_direct_albedo, n_vegetation_region_urban, &
+         n_stream_sw_urban, n_stream_lw_urban &
+         /Spartacus_Constant_Parameters/ sw_dn_direct_frac, air_ext_sw, air_ssa_sw, veg_ssa_sw, air_ext_lw, &
+         air_ssa_lw, veg_ssa_lw, veg_fsd_const, veg_contact_fraction_const, ground_albedo_dir_mult_fact &
+         /Spartacus_Profile_Parameters/ height, building_frac, veg_frac, building_scale, veg_scale, &
+         roof_albedo, wall_albedo, roof_emissivity, wall_emissivity, roof_albedo_dir_mult_fact, wall_specular_frac
 
-      ! Bring in Spartacus.nml
-      OPEN (511, file=TRIM(FileInputPath)//'Spartacus.nml', status='old')
-      READ (511, nml=Spartacus)
+      ! SU is currently single band so the following are 1
+      nspec = 1
+      nsw = 1
+      nlw = 1
+      ! SUEWS does not have multiple tiles so ncol=1
+      ncol = 1
+      ! Bring in SUEWS-SPARTACUS.nml settings and parameters
+      OPEN (511, file=TRIM(FileInputPath)//'SUEWS_SPARTACUS.nml', status='old')
+      READ (511, nml=Spartacus_Settings)
+      READ (511, nml=Spartacus_Constant_Parameters)
       CLOSE (511)
-
-      ALLOCATE (height(1, nlayers + 1))
-      ALLOCATE (building_frac(1, nlayers))
-      ALLOCATE (veg_frac(1, nlayers))
-      ALLOCATE (building_scale(1, nlayers))
-      ALLOCATE (veg_scale(1, nlayers))
-      ALLOCATE (veg_ext(1, nlayers))
-      ALLOCATE (veg_fsd(1, nlayers))
-      ALLOCATE (veg_contact_fraction(1, nlayers))
-      ALLOCATE (roof_albedo(1, nlayers))
-      ALLOCATE (wall_albedo(1, nlayers))
-      ALLOCATE (roof_albedo_dir_mult_fact(1, nlayers))
-      ALLOCATE (wall_specular_frac(1, nlayers))
-      ALLOCATE (roof_emissivity(1, nlayers, 1))
-      ALLOCATE (wall_emissivity(1, nlayers, 1))
-      ! Bring in Spartacus_Profiles.nml
-      OPEN (511, file=TRIM(FileInputPath)//'Spartacus_Profiles.nml', status='old')
-      READ (511, nml=Spartacus_Profiles)
+      ALLOCATE (nlay(ncol))
+      nlay = [nlayers]
+      ntotlay = SUM(nlay)
+      ALLOCATE (height(ntotlay + ncol))
+      ALLOCATE (building_frac(ntotlay))
+      ALLOCATE (veg_frac(ntotlay))
+      ALLOCATE (building_scale(ntotlay))
+      ALLOCATE (veg_scale(ntotlay))
+      ALLOCATE (veg_ext(ntotlay))
+      ALLOCATE (veg_fsd(ntotlay))
+      ALLOCATE (veg_contact_fraction(ntotlay))
+      ALLOCATE (roof_albedo(nspec, ntotlay))
+      ALLOCATE (wall_albedo(nspec, ntotlay))
+      ALLOCATE (roof_albedo_dir_mult_fact(nspec, ntotlay))
+      ALLOCATE (wall_specular_frac(nspec, ntotlay))
+      ALLOCATE (roof_emissivity(nspec, ntotlay))
+      ALLOCATE (wall_emissivity(nspec, ntotlay))
+      OPEN (511, file=TRIM(FileInputPath)//'SUEWS_SPARTACUS.nml', status='old')
+      READ (511, nml=Spartacus_Profile_Parameters)
       CLOSE (511)
+      !Set the values of profiles that are implemented as being constant with height
+      veg_fsd(:) = veg_fsd_const
+      veg_contact_fraction(:) = veg_contact_fraction_const
 
       !!!!!!!!!!!!!! Model configuration !!!!!!!!!!!!!!
 
-      CALL config%READ(file_name='config.nam')
-      ncol = 1
+      CALL config%READ(file_name=TRIM(FileInputPath)//'SUEWS_SPARTACUS.nml')
       config%do_sw = .TRUE.
       config%do_lw = .TRUE.
       config%use_sw_direct_albedo = use_sw_direct_albedo
@@ -3829,13 +3829,13 @@ CONTAINS
       END IF
       config%iverbose = 3
       config%n_vegetation_region_urban = n_vegetation_region_urban
+      config%n_vegetation_region_forest = n_vegetation_region_urban ! use the same complexity for urban as forests
       config%nsw = nsw
       config%nlw = nlw
       config%n_stream_sw_urban = n_stream_sw_urban
       config%n_stream_lw_urban = n_stream_lw_urban
-      ALLOCATE (nlay(ncol))
-      nlay = [nlayers]
-      ntotlay = SUM(nlay)
+      config%n_stream_sw_forest = n_stream_sw_urban ! use the same complexity for urban as forests
+      config%n_stream_lw_forest = n_stream_lw_urban ! use the same complexity for urban as forests
       CALL config%consolidate()
 
       !!!!!!!!!!!!!! allocate and set canopy_props !!!!!!!!!!!!!!
@@ -3845,28 +3845,56 @@ CONTAINS
       CALL canopy_props%ALLOCATE(config, ncol, ntotlay, i_representation)
 
       ! set cos_sza, nlay, ncol, ntotlay
-      canopy_props%cos_sza = COS(zenith_deg*3.1415927/180) ! Meg can just hard code: COS(45.*3.1415927/180)
+      canopy_props%cos_sza = COS(zenith_deg*3.1415927/180)
       canopy_props%nlay = nlay
       canopy_props%ncol = ncol
-      canopy_props%ntotlay = SUM(canopy_props%nlay)
+      canopy_props%ntotlay = ntotlay
 
       ! calculate dz array
       ilay = 1
       DO jcol = 1, ncol
          canopy_props%dz(ilay:ilay + canopy_props%nlay(jcol) - 1) &
-         &  = height(2:canopy_props%nlay(jcol) + 1, jcol) &
-         &   - height(1:canopy_props%nlay(jcol), jcol)
+              &  = height(ilay + 1:ilay + canopy_props%nlay(jcol)) &
+              &   - height(ilay:ilay + canopy_props%nlay(jcol) - 1)
          canopy_props%istartlay(jcol) = ilay
          ilay = ilay + canopy_props%nlay(jcol)
       END DO
 
+      ALLOCATE (LAI_av(ncol))
+      ALLOCATE (veg_depth(ncol))
+      ALLOCATE (LAI_av_z(ntotlay))
+      !Calculate the area weighted LAI of trees
+      DO jcol = 1, ncol
+         LAI_av(jcol) = (sfr(ConifSurf)*LAI_id(1) + sfr(DecidSurf)*LAI_id(2))/(sfr(ConifSurf) + sfr(DecidSurf) + 10.**(-10)) ! the 10.**-10 stops the equation blowing up when there are no trees
+      END DO
+      ! find veg_depth
+      DO jcol = 1, ncol
+         ilay = canopy_props%istartlay(jcol)
+         veg_depth(jcol) = 0.
+         DO jlay = 0, nlay(jcol) - 1
+            IF (veg_frac(ilay + jlay) > 0.) THEN
+               veg_depth(jcol) = veg_depth(jcol) + canopy_props%dz(ilay + jlay)
+            END IF
+         END DO
+      END DO
+      ! find LAV_av_z and veg_ext. Assume the LAI is uniform with height within the vegetation layer.
+      DO jcol = 1, ncol
+         ilay = canopy_props%istartlay(jcol)
+         DO jlay = 0, nlay(jcol) - 1
+            IF (veg_frac(ilay + jlay) > 0.) THEN
+               LAI_av_z(ilay + jlay) = LAI_av(jcol)*canopy_props%dz(ilay + jlay)/veg_depth(jcol)
+               veg_ext(ilay + jlay) = LAI_av_z(ilay + jlay)/(2*canopy_props%dz(ilay))
+            END IF
+         END DO
+      END DO
+
       ! set temperature
-      TSfc_K = TSfc_C + 273.15 ! convert surface temperature to Kelvin
+      tsurf_0_K = tsurf_0 + 273.15 ! convert surface temperature to Kelvin
       tair_K = temp_C + 273.15 ! convert air temperature to Kelvin
-      canopy_props%ground_temperature = TSfc_K ! Meg can just hard code: 307.
-      canopy_props%roof_temperature = TSfc_K ! Meg can just hard code: 319.
-      canopy_props%wall_temperature = TSfc_K ! Meg can just hard code: 303.
-      canopy_props%clear_air_temperature = tair_K ! Meg can just hard code: ?
+      canopy_props%ground_temperature = tsurf_0_K ! TODO: tsurf_0_K needs to be made vertically distributed
+      canopy_props%roof_temperature = tsurf_0_K
+      canopy_props%wall_temperature = tsurf_0_K
+      canopy_props%clear_air_temperature = tair_K
       IF (sfr(ConifSurf) + sfr(DecidSurf) > 0.0) THEN
          canopy_props%veg_temperature = tair_K
          canopy_props%veg_air_temperature = tair_K
@@ -3874,14 +3902,14 @@ CONTAINS
 
       ! set building and vegetation properties
       canopy_props%i_representation = i_representation
-      canopy_props%building_scale = building_scale(1, :) ! diameter of buildings (m) (the only L method for buildings is Eq. 19 Hogan et al. 2018)
-      canopy_props%building_fraction = building_frac(1, :) ! building fraction
+      canopy_props%building_scale = building_scale(:) ! diameter of buildings (m). The only L method for buildings is Eq. 19 Hogan et al. 2018.
+      canopy_props%building_fraction = building_frac(:) ! building fraction
       IF (sfr(ConifSurf) + sfr(DecidSurf) > 0.0) THEN
-         canopy_props%veg_fraction = veg_frac(1, :) ! evergreen + deciduous fractions
-         canopy_props%veg_scale = veg_scale(1, :) ! scale of tree crowns (m) since using the default use_symmetric_vegetation_scale_urban=.TRUE. (so that Eq. 20 Hogan et al. 2018 is used for L)
-         canopy_props%veg_ext = veg_ext(1, :) ! 0.25 in test_surface_in.nc. In literature generally 0.5 is used so why 0.25? This replaces vegetation albedo.
-         canopy_props%veg_fsd = veg_fsd(1, :) ! do we need the fractional standard deviation of the extinction coefficient? Varying seems to make no difference.
-         canopy_props%veg_contact_fraction = veg_contact_fraction(1, :)
+         canopy_props%veg_fraction = veg_frac(:) ! evergreen + deciduous fractions
+         canopy_props%veg_scale = veg_scale(:) ! scale of tree crowns (m). Using the default use_symmetric_vegetation_scale_urban=.TRUE. so that Eq. 20 Hogan et al. 2018 is used for L.
+         canopy_props%veg_ext = veg_ext(:)
+         canopy_props%veg_fsd = veg_fsd(:)
+         canopy_props%veg_contact_fraction = veg_contact_fraction(:)
       END IF
 
       !!!!!!!!!!!!!! allocate and set canopy top forcing !!!!!!!!!!!!!!
@@ -3891,7 +3919,7 @@ CONTAINS
       ALLOCATE (top_flux_dn_lw(nspec, ncol))
       top_flux_dn_sw = avKdn ! diffuse + direct
       top_flux_dn_direct_sw = sw_dn_direct_frac*avKdn ! Berrizbeitia et al. 2020 say the ratio diffuse/direct is 0.55 for Berlin and Brussels on av annually
-      top_flux_dn_diffuse_sw = top_flux_dn_sw(1, 1) - top_flux_dn_direct_sw(1, 1)
+      top_flux_dn_diffuse_sw = top_flux_dn_sw(nspec, ncol) - top_flux_dn_direct_sw(nspec, ncol)
       top_flux_dn_lw = ldown
 
       !!!!!!!!!!!!!! allocate and set sw_spectral_props !!!!!!!!!!!!!!
@@ -3899,21 +3927,21 @@ CONTAINS
       CALL sw_spectral_props%DEALLOCATE()
       CALL sw_spectral_props%ALLOCATE(config, ncol, ntotlay, nspec, canopy_props%i_representation)
 
-      alb_no_tree_bldg = (alb_next(1)*sfr(PavSurf) + alb_next(5)*sfr(GrassSurf) + &
-                          alb_next(6)*sfr(BSoilSurf) + alb_next(7)*sfr(WaterSurf))/ &
+      alb_no_tree_bldg = (alb(1)*sfr(PavSurf) + alb(5)*sfr(GrassSurf) + &
+                          alb(6)*sfr(BSoilSurf) + alb(7)*sfr(WaterSurf))/ &
                          (sfr(PavSurf) + sfr(GrassSurf) + sfr(BSoilSurf) + sfr(WaterSurf)) ! albedo of the ground
-      sw_spectral_props%air_ext = air_ext_sw ! what is the extinction coefficient of air?
-      sw_spectral_props%air_ssa = air_ssa_sw  ! what is the single scattering albedo of air?
+      sw_spectral_props%air_ext = air_ext_sw
+      sw_spectral_props%air_ssa = air_ssa_sw
       IF (sfr(ConifSurf) + sfr(DecidSurf) > 0.0) THEN
-         sw_spectral_props%veg_ssa = veg_ssa_sw ! from test_surface_in.nc and was used in Hogan 2019 "flexible"
+         sw_spectral_props%veg_ssa = veg_ssa_sw
       END IF
       sw_spectral_props%ground_albedo = alb_no_tree_bldg ! albedo excluding buildings and trees
-      sw_spectral_props%roof_albedo = roof_albedo ! albedo of buildings
-      sw_spectral_props%wall_albedo = wall_albedo ! albedo of buildings
-      sw_spectral_props%wall_specular_frac = wall_specular_frac
+      sw_spectral_props%roof_albedo = roof_albedo(nspec, ncol) ! albedo of buildings
+      sw_spectral_props%wall_albedo = wall_albedo(nspec, ncol) ! albedo of buildings
+      sw_spectral_props%wall_specular_frac = wall_specular_frac(nspec, ncol)
       IF (config%use_sw_direct_albedo) THEN
          sw_spectral_props%ground_albedo_dir = alb_no_tree_bldg*ground_albedo_dir_mult_fact
-         sw_spectral_props%roof_albedo_dir = roof_albedo*roof_albedo_dir_mult_fact
+         sw_spectral_props%roof_albedo_dir = roof_albedo(nspec, ncol)*roof_albedo_dir_mult_fact(nspec, ncol)
       END IF
 
       !!!!!!!!!!!!!! allocate and set lw_spectral_props !!!!!!!!!!!!!!
@@ -3924,17 +3952,14 @@ CONTAINS
       emis_no_tree_bldg = (emis(1)*sfr(PavSurf) + emis(5)*sfr(GrassSurf) + &
                            emis(6)*sfr(BSoilSurf) + emis(7)*sfr(WaterSurf))/ &
                           (sfr(PavSurf) + sfr(GrassSurf) + sfr(BSoilSurf) + sfr(WaterSurf))  ! emissivity of the ground
-      lw_spectral_props%air_ext = air_ext_lw ! what is the extinction coefficient of air?
-      lw_spectral_props%air_ssa = air_ssa_lw  ! what is the single scattering albedo of air?
+      lw_spectral_props%air_ext = air_ext_lw
+      lw_spectral_props%air_ssa = air_ssa_lw
       IF (sfr(ConifSurf) + sfr(DecidSurf) > 0.0) THEN
-         lw_spectral_props%veg_ssa = veg_ssa_lw ! from test_surface_in.nc .... suitable?
+         lw_spectral_props%veg_ssa = veg_ssa_lw
       END IF
       lw_spectral_props%ground_emissivity = emis_no_tree_bldg ! emissivity excluding buildings and trees
-      lw_spectral_props%roof_emissivity = roof_emissivity(:, :, 1) ! emissivity of buildings
-      lw_spectral_props%wall_emissivity = wall_emissivity(:, :, 1) ! emissivity of buildings
-
-      ! would be good to create a property veg_emissivity in lw_spectral_props then pass to calc_simple_spectrum_lw()
-      !veg_emissivity = (emis(3)*sfr(ConifSurf)+emis(4)*sfr(DecidSurf))/(sfr(ConifSurf)+sfr(DecidSurf))
+      lw_spectral_props%roof_emissivity = roof_emissivity(nspec, ncol) ! emissivity of buildings
+      lw_spectral_props%wall_emissivity = wall_emissivity(nspec, ncol) ! emissivity of buildings
 
       !!!!!!!!!!!!!! allocate sw !!!!!!!!!!!!!!
 
@@ -4001,51 +4026,56 @@ CONTAINS
       END DO
 
       ! albedo
-      alb_spc = ((top_flux_dn_diffuse_sw + 10.**(-10))*bc_out%sw_albedo(1, 1) & ! the 10.**-10 stops the equation blowing up when kdwn=0
-                 + (top_flux_dn_direct_sw(1, 1) + 10.**(-10))*bc_out%sw_albedo_dir(1, 1)) &
-                /(top_flux_dn_diffuse_sw + 10.**(-10) + top_flux_dn_direct_sw(1, 1) + 10.**(-10))
+      alb_spc = ((top_flux_dn_diffuse_sw + 10.**(-10))*bc_out%sw_albedo(nspec, ncol) & ! the 10.**-10 stops the equation blowing up when kdwn=0
+                 + (top_flux_dn_direct_sw(nspec, ncol) + 10.**(-10))*bc_out%sw_albedo_dir(nspec, ncol)) &
+                /(top_flux_dn_diffuse_sw + 10.**(-10) + top_flux_dn_direct_sw(nspec, ncol) + 10.**(-10))
 
       !!! Output arrays !!!
 
       ! emissivity
-      emis_spc = bc_out%lw_emissivity(1, 1)
+      emis_spc = bc_out%lw_emissivity(nspec, ncol)
       ! longwave emission
-      lw_emission_spc = bc_out%lw_emission(1, 1)
-      ! lowngwave upward = emitted as blackbody - reflected
+      lw_emission_spc = bc_out%lw_emission(nspec, ncol)
+      ! lowngwave upward = emitted as blackbody + reflected
       lw_up_spc = lw_emission_spc + (1 - emis_spc)*ldown
       ! shortwave upward = downward diffuse * diffuse albedo + downward direct * direct albedo
-      sw_up_spc = top_flux_dn_diffuse_sw*bc_out%sw_albedo(1, 1) &
-                  + top_flux_dn_direct_sw(1, 1)*bc_out%sw_albedo_dir(1, 1) ! or more simply: alb_spc*avKdn
+      sw_up_spc = top_flux_dn_diffuse_sw*bc_out%sw_albedo(nspec, ncol) &
+                  + top_flux_dn_direct_sw(nspec, ncol)*bc_out%sw_albedo_dir(nspec, ncol) ! or more simply: alb_spc*avKdn
       ! net all = net sw + net lw
-      qn_spc = sw_flux%top_net(1, 1) + lw_flux%top_net(1, 1)
+      qn_spc = sw_flux%top_net(nspec, ncol) + lw_flux%top_net(nspec, ncol)
 
       ! lw arrays
       clear_air_abs_lw_spc = 0.0
-      clear_air_abs_lw_spc(:nlayers) = lw_flux%clear_air_abs(1, :)
+      clear_air_abs_lw_spc(:ntotlay) = lw_flux%clear_air_abs(nspec, :)
       wall_net_lw_spc = 0.0
-      wall_net_lw_spc(:nlayers) = lw_flux%wall_net(1, :)
+      wall_net_lw_spc(:ntotlay) = lw_flux%wall_net(nspec, :)
       roof_net_lw_spc = 0.0
-      roof_net_lw_spc(:nlayers) = lw_flux%roof_net(1, :)
+      roof_net_lw_spc(:ntotlay) = lw_flux%roof_net(nspec, :)
       roof_in_lw_spc = 0.0
-      roof_in_lw_spc(:nlayers) = lw_flux%roof_in(1, :)
-      top_net_lw_spc = lw_flux%top_net(1, 1)
-      ground_net_lw_spc = lw_flux%ground_net(1, 1)
-      top_dn_lw_spc = lw_flux%top_dn(1, 1)
-
+      roof_in_lw_spc(:ntotlay) = lw_flux%roof_in(nspec, :)
+      top_net_lw_spc = lw_flux%top_net(nspec, ncol)
+      ground_net_lw_spc = lw_flux%ground_net(nspec, ncol)
+      top_dn_lw_spc = lw_flux%top_dn(nspec, ncol)
       ! sw arrays
       clear_air_abs_sw_spc = 0.0
-      clear_air_abs_sw_spc(:nlayers) = sw_flux%clear_air_abs(1, :)
+      clear_air_abs_sw_spc(:ntotlay) = sw_flux%clear_air_abs(nspec, :)
       wall_net_sw_spc = 0.0
-      wall_net_sw_spc(:nlayers) = sw_flux%wall_net(1, :)
+      wall_net_sw_spc(:ntotlay) = sw_flux%wall_net(nspec, :)
       roof_net_sw_spc = 0.0
-      roof_net_sw_spc(:nlayers) = sw_flux%roof_net(1, :)
+      roof_net_sw_spc(:ntotlay) = sw_flux%roof_net(nspec, :)
       roof_in_sw_spc = 0.0
-      roof_in_sw_spc(:nlayers) = sw_flux%roof_in(1, :)
-      top_dn_dir_sw_spc = sw_flux%top_dn_dir(1, 1)
-      top_net_sw_spc = sw_flux%top_net(1, 1)
-      ground_dn_dir_sw_spc = sw_flux%ground_dn_dir(1, 1)
-      ground_net_sw_spc = sw_flux%ground_net(1, 1)
+      roof_in_sw_spc(:ntotlay) = sw_flux%roof_in(nspec, :)
+      top_dn_dir_sw_spc = sw_flux%top_dn_dir(nspec, ncol)
+      top_net_sw_spc = sw_flux%top_net(nspec, ncol)
+      ground_dn_dir_sw_spc = sw_flux%ground_dn_dir(nspec, ncol)
+      ground_net_sw_spc = sw_flux%ground_net(nspec, ncol)
 
+      !!!!!!!!!!!!!! Bulk KUP, LUP, QSTAR for SUEWS !!!!!!!!!!!!!!
+
+      lup = lw_up_spc
+      kup = sw_up_spc
+      qn = qn_spc
+      
       !!!!!!!!!!!!!! Clear from memory !!!!!!!!!!!!!
 
       CALL canopy_props%DEALLOCATE()
@@ -4077,6 +4107,6 @@ CONTAINS
       DEALLOCATE (roof_emissivity)
       DEALLOCATE (wall_emissivity)
 
-   END SUBROUTINE test_rad_spc
+   END SUBROUTINE SPARTACUS
 
 END MODULE SUEWS_Driver

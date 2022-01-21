@@ -1,7 +1,7 @@
 CBL input files
 ---------------
 
-Main references for this part of the model: Onomura et al. (2015) :cite:`O15` and Cleugh and Grimmond (2001) :cite:t:`CG01`.
+Main references for this part of the model: :cite:t:`O15` and :cite:t:`CG01`.
 
 If CBL slab model is used (:option:`CBLUse = 1 <CBLUse>` in :ref:`RunControl.nml <RunControl>`) the following files are needed.
 
@@ -124,7 +124,7 @@ Definitions and example file of initial values prepared for Sacramento.
 CBLInput.nml
 ~~~~~~~~~~~~~
 
- sample file of **CBLInput.nml** looks like
+sample file of **CBLInput.nml** looks like
 
 .. literalinclude:: CBLInput.nml
 
@@ -133,16 +133,16 @@ CBLInput.nml
 The parameters and their setting instructions
 are provided through :ref:`the links below <CBLinput>`:
 
-  .. hlist::
-    + :option:`EntrainmentType`
-    + :option:`QH_Choice`
-    + :option:`InitialData_use`
-    + :option:`Sondeflag`
-    + :option:`CBLday(id)`
-    + :option:`CO2_included`
-    + :option:`FileSonde(id)`
-    + :option:`InitialDataFileName`
-    + :option:`Wsb`
+.. hlist::
+  + :option:`EntrainmentType`
+  + :option:`QH_Choice`
+  + :option:`InitialData_use`
+  + :option:`Sondeflag`
+  + :option:`CBLday(id)`
+  + :option:`CO2_included`
+  + :option:`FileSonde(id)`
+  + :option:`InitialDataFileName`
+  + :option:`Wsb`
 
 .. toctree::
    :maxdepth: 1

@@ -120,7 +120,6 @@ CONTAINS
    !==============================================================================
    SUBROUTINE NARP( &
       nsurf, sfr, SnowFrac, alb, emis, IceFrac, &! input:
-      alb_spc, emis_spc, lw_emission_spc, &
       NARP_TRANS_SITE, NARP_EMIS_SNOW, &
       DTIME, ZENITH_deg, tsurf_0, kdown, Temp_C, RH, Press_hPa, qn1_obs, ldown_obs, &
       SnowAlb, &
@@ -200,7 +199,6 @@ CONTAINS
       REAL(KIND(1D0)), INTENT(in) ::SnowAlb
       REAL(KIND(1D0)), INTENT(in) ::NARP_TRANS_SITE
       REAL(KIND(1D0)), INTENT(in) ::NARP_EMIS_SNOW
-      REAL(KIND(1D0)), INTENT(in) ::alb_spc, emis_spc, lw_emission_spc
 
       INTEGER, INTENT(in) ::nsurf
       INTEGER, INTENT(in) ::NetRadiationMethod_use ! the one processed by RadMethod
@@ -318,19 +316,13 @@ CONTAINS
          !--------------------------------------------------
          !-------SNOW FREE SURFACE--------------------------
 
-         IF (NetRadiationMethod_use > 1000) THEN
-            !set albedo snow free and emissivity to the spartacus value
-            albedo_snowfree = alb_spc
-            EMIS0 = emis_spc
+         !NARP
+         IF (AlbedoChoice == 1 .AND. 180*ZENITH/ACOS(0.0) < 90) THEN
+            albedo_snowfree = ALB(is) + 0.5E-16*(180*ZENITH/ACOS(0.0))**8 !AIDA 1982
          ELSE
-            !NARP
-            IF (AlbedoChoice == 1 .AND. 180*ZENITH/ACOS(0.0) < 90) THEN
-               albedo_snowfree = ALB(is) + 0.5E-16*(180*ZENITH/ACOS(0.0))**8 !AIDA 1982
-            ELSE
-               albedo_snowfree = ALB(is)
-            END IF
-            EMIS0 = EMIS(is)
-         ENDIF
+            albedo_snowfree = ALB(is)
+         END IF
+         EMIS0 = EMIS(is)
 
          !Downward longwave radiation
          IF ((ldown_option == 4) .OR. (ldown_option == 5)) THEN !Estimate FCLD from Kdown (Offerle et al. 2003)
@@ -372,31 +364,25 @@ CONTAINS
          END IF
 
          !Upward longwave radiation
-         IF (NetRadiationMethod_use > 1000) THEN
-            !Use Spartacus emissions and emissivity.
-            TSURF = tsurf_0_K
-            LUP = lw_emission_spc + (1 - EMIS0)*LDOWN
+         !NARP
+         !Note that this is not averaged over the hour for cases where time step < 1hr
+         KDOWN_HR = KDOWN
+         !calculate Lup correction using Eq. 15 of Offerle et al.
+         IF (KDOWN_HR > 0) THEN
+            LUPCORR = (1 - albedo_snowfree)*(0.08*KDOWN_HR)
          ELSE
-            !NARP
-            !Note that this is not averaged over the hour for cases where time step < 1hr
-            KDOWN_HR = KDOWN
-            !calculate Lup correction using Eq. 15 of Offerle et al.
-            IF (KDOWN_HR > 0) THEN
-               LUPCORR = (1 - albedo_snowfree)*(0.08*KDOWN_HR)
-            ELSE
-               LUPCORR = 0.
-            END IF
-            !calculate Lup
-            IF (NetRadiationMethod_use < 10) THEN
-               ! NARP method
-               TSURF = ((EMIS0*SIGMATK4 + LUPCORR)/(EMIS0*SIGMA_SB))**0.25 !Eqs. (14) and (15),
-               LUP = EMIS0*SIGMATK4 + LUPCORR + (1 - EMIS0)*LDOWN     !Eq (16) in Offerle et al. (2002)
-            ELSE
-               ! use iteration-based approach to calculate LUP and also TSURF; TS 20 Sep 2019
-               TSURF = tsurf_0_K
-               LUP = EMIS0*SIGMA_SB*TSURF**4 + (1 - EMIS0)*LDOWN
-            END IF
-         ENDIF
+            LUPCORR = 0.
+         END IF
+         !calculate Lup
+         IF (NetRadiationMethod_use < 10) THEN
+            ! NARP method
+            TSURF = ((EMIS0*SIGMATK4 + LUPCORR)/(EMIS0*SIGMA_SB))**0.25 !Eqs. (14) and (15),
+            LUP = EMIS0*SIGMATK4 + LUPCORR + (1 - EMIS0)*LDOWN     !Eq (16) in Offerle et al. (2002)
+         ELSE
+            ! use iteration-based approach to calculate LUP and also TSURF; TS 20 Sep 2019
+            TSURF = tsurf_0_K
+            LUP = EMIS0*SIGMA_SB*TSURF**4 + (1 - EMIS0)*LDOWN
+         END IF
 
          !Upward shortwave radiation of the snowfree surface fractions
          KUP = albedo_snowfree*KDOWN

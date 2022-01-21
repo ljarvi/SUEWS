@@ -154,12 +154,27 @@ SSss_YYYY_ESTM_TT.txt
 ~~~~~~~~~~~~~~~~~~~~~
 
 If the ESTM model option is run, the following output file is created.
-**Note: First time steps of storage output could give NaN values during
-the initial converging phase.**
+
+.. note:: First time steps of storage output could give NaN values during the initial converging phase.
+
 
 ESTM output file format
 
 .. csv-table::
   :file: SSss_YYYY_ESTM_TT.csv
+  :header-rows: 1
+  :widths: auto
+
+
+SSss_YYYY_SPARTACUS_TT.txt
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the SPARTACUS model option is run, the following output file is created.
+
+
+SPARTACUS output file format
+
+.. csv-table::
+  :file: SSss_YYYY_SPARTACUS_TT.csv
   :header-rows: 1
   :widths: auto

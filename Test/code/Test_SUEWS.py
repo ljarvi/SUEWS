@@ -48,7 +48,10 @@ def load_SUEWS_table(fileX):
     # remove case issues
     fileX = path_insensitive(fileX)
     rawdata = pd.read_csv(
-        fileX, delim_whitespace=True, comment="!", error_bad_lines=True, skiprows=1
+        fileX,
+        delim_whitespace=True,
+        comment="!",
+        skiprows=1,
     ).dropna()
     return rawdata
 
@@ -73,9 +76,8 @@ def load_SUEWS_results(n_grid, n_year):
 
 # load results as pandas dataframe
 def load_df_SUEWS(dir_out="Output", fn_pattern="*SUEWS_60.txt"):
-    fl_res = list(Path(dir_out).glob(fn_pattern))
     # re-order results into [year, grid] layout
-    fl_res = sorted(list(Path(dir_out).glob(fn_pattern)))
+    fl_res = sorted(Path(dir_out).glob(fn_pattern))
     list_grid = [fn.stem.split("_")[0] for fn in fl_res]
     # load individual files with extra level named by grid
     list_df = [
@@ -204,7 +206,7 @@ def run_sim(
     # copy base input files
     copytree(dir_input, "Input")
     p_input = Path(dir_input)
-    copyfile(p_input / "config.nam", p_sim / "config.nam")
+    # copyfile(p_input / "config.nam", p_sim / "config.nam")
 
     # get sim info
     yr_sim = df_siteselect.loc[:, "Year"].unique().astype(int)
@@ -379,7 +381,6 @@ def test_multigrid(
         res_sim_singlegrid.append(res_sim_grid)
 
     # combine `res_sim_singlegrid`
-    # res_sim_singlegrid = np.concatenate(tuple(res_sim_singlegrid))
     res_sim_singlegrid = pd.concat(res_sim_singlegrid).sort_index()
 
     # test equality
@@ -461,7 +462,7 @@ def test_samerun(
             for excl in [
                 "FileChoices.txt",
                 "state_init.txt",
-                '_SPARTACUS_', # SPARTACUS is still experimental
+                "_SPARTACUS_",  # SPARTACUS is still experimental
             ]
         )
     ]
@@ -497,7 +498,7 @@ def test_samerun(
                 .droplevel(0, axis=1)
             )
             if df_diff.size > 0:
-                p_csv_diff=path_res_sample / (file + ".diff.csv")
+                p_csv_diff = path_res_sample / (file + ".diff.csv")
                 df_diff.to_csv(p_csv_diff)
                 print(df_diff)
                 print(f"===  {p_csv_diff.as_posix()} has been saved")

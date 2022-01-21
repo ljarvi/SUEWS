@@ -48,7 +48,7 @@ path_input_ver.mkdir()
 # copy runcontrol
 # both SUEWS and SPARTACUS nml files
 for fn_nml in [
-    "config.nam",
+    # "config.nam",
     "RunControl.nml",
 ]:
     path_runctrl_base = path_baserun / fn_nml
