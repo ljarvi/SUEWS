@@ -13,3 +13,4 @@ Modelled values will be used even if QF is provided in the meteorological forcin
 3,"Updated :cite:t:`L11` method using daily (not instantaneous) air temperature (HDD(id-1,3)) using coefficients specified in `SUEWS_AnthropogenicEmission.txt`."
 4,":cite:t:`J19` method, in addition to anthropogenic heat due to building energy use calculated by :cite:t:`J11`, that due to metabolism and traffic is also calculated using coefficients specified in `SUEWS_AnthropogenicEmission.txt` and diurnal patterns specified in `SUEWS_Profiles.txt`.
 Modelled values will be used even if QF is provided in the meteorological forcing file."
+45,"Same as EmissionMethod=2 for anthropogenic emissions, but to calculate biogenic sink of CO2 uses conductance approach by :cite:t:`J19`."
