@@ -13,3 +13,27 @@ Modelled values will be used even if QF is provided in the meteorological forcin
 3,"Updated :cite:t:`L11` method using daily (not instantaneous) air temperature (HDD(id-1,3)) using coefficients specified in `SUEWS_AnthropogenicEmission.txt`."
 4,":cite:t:`J19` method, in addition to anthropogenic heat due to building energy use calculated by :cite:t:`J11`, that due to metabolism and traffic is also calculated using coefficients specified in `SUEWS_AnthropogenicEmission.txt` and diurnal patterns specified in `SUEWS_Profiles.txt`.
 Modelled values will be used even if QF is provided in the meteorological forcing file."
+11,"|NotRecmd|
+Same as EmissionMethod=1 but the biogenic sink is calculated using rectangular hyberbola equation from Bellucco et al. 2017."
+21,"|NotRecmd|
+Same as EmissionMethod=1 but the biogenic sink is calculated using local model from Bellucco et al. 2017."
+31,"|NotRecmd|
+Same as EmissionMethod=1 but the biogenic sink is calculated using general model from Bellucco et al. 2017."
+41,"|NotRecmd|
+Same as EmissionMethod=1 but the biogenic sink is calculated using conductance model from :cite:t:`J19`."
+15,"Same as EmissionMethod=2 but the biogenic sink is calculated using rectangular hyberbola equation from Bellucco et al. 2017."
+25,"|NotRecmd|
+Same as EmissionMethod=2 but the biogenic sink is calculated using local model from Bellucco et al. 2017."
+35,"Same as EmissionMethod=2 but the biogenic sink is calculated using general model from Bellucco et al. 2017."
+45,"|Recmd|
+Same as EmissionMethod=2 but the biogenic sink is calculated using conductance model from :cite:t:`J19`."
+13,"Same as EmissionMethod=3 but the biogenic sink is calculated using rectangular hyberbola equation from Bellucco et al. 2017."
+23,"|NotRecmd|
+Same as EmissionMethod=3 but the biogenic sink is calculated using local model from Bellucco et al. 2017."
+33,"Same as EmissionMethod=3 but the biogenic sink is calculated using general model from Bellucco et al. 2017."
+43,"Same as EmissionMethod=3 but the biogenic sink is calculated using conductance model from :cite:t:`J19`."
+14,"Same as EmissionMethod=4 but the biogenic sink is calculated using rectangular hyberbola equation from Bellucco et al. 2017."
+24,"|NotRecmd|
+Same as EmissionMethod=4 but the biogenic sink is calculated using local model from Bellucco et al. 2017."
+34,"Same as EmissionMethod=4 but the biogenic sink is calculated using general model from Bellucco et al. 2017."
+44,"Same as EmissionMethod=4 but the biogenic sink is calculated using conductance model from :cite:t:`J19`."
