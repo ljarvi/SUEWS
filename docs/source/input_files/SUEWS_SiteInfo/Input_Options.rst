@@ -3146,7 +3146,7 @@ Input Options
 .. option:: S1
 
 	:Description:
-		A parameter related to soil moisture dependence [-]
+		A parameter related to soil moisture dependence [-]. In ´gs_model´= 2, this is the ´G6´ conductance parameter multiplied with wilting point deficit. 
 
 	:Configuration:
 		.. csv-table::
@@ -3159,7 +3159,7 @@ Input Options
 .. option:: S2
 
 	:Description:
-		A parameter related to soil moisture dependence [mm]
+		A parameter related to soil moisture dependence [mm]. In ´gs_model´= 2, this should be zet to 0.
 
 	:Configuration:
 		.. csv-table::
