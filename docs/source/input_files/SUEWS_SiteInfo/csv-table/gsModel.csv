@@ -1,4 +1,5 @@
 "Referencing Table","Requirement","Comment"
 "`SUEWS_Conductance.txt`","`MD`","
 - :code:`1` :cite:`J11`
-- :code:`2` :cite:`W16` |Recmd|"
+- :code:`2` :cite:`W16` |Recmd| Uses air temperature from meteorological forcing in calculation of photosynthesis"
+- :code:`4` :cite:`L19` |Recmd| Uses simulate 2-m air temperature in calculation of photosynthesis"
