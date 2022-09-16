@@ -1,15 +1,33 @@
 "Value","Comments"
-0,"Uses values provided in the meteorological forcing file (SSss_YYYY_data_tt.txt).
+0,"Uses QF values provided in the meteorological forcing file (SSss_YYYY_data_tt.txt).
 If you do not want to include QF to the calculation of surface energy balance, you should set values in the meteorological forcing file to zero to prevent calculation of QF.
-UMEP provides two methods to calculate QF
-LQF which is simpler
-GQF which is more complete but requires more data inputs"
+UMEP provides two methods to calculate QF:
+(1) LQF which is simpler, (2) GQF which is more complete but requires more data inputs"
 1,"|NotRecmd|
-Calculated according to :cite:t:`L11` using coefficients specified in `SUEWS_AnthropogenicEmission.txt`.
+QF calculated according to :cite:t:`L11` using coefficients specified in `SUEWS_AnthropogenicEmission.txt`.
 Modelled values will be used even if QF is provided in the meteorological forcing file."
-2,"|Recmd|
-Calculated according to :cite:t:`J11` using coefficients specified in `SUEWS_AnthropogenicEmission.txt` and diurnal patterns specified in `SUEWS_Profiles.txt`.
+2,"|Recmd is only QF is simulated|
+QF calculated according to :cite:t:`J11` using coefficients specified in `SUEWS_AnthropogenicEmission.txt` and diurnal patterns specified in `SUEWS_Profiles.txt`.
 Modelled values will be used even if QF is provided in the meteorological forcing file."
 3,"Updated :cite:t:`L11` method using daily (not instantaneous) air temperature (HDD(id-1,3)) using coefficients specified in `SUEWS_AnthropogenicEmission.txt`."
-4,":cite:t:`J19` method, in addition to anthropogenic heat due to building energy use calculated by :cite:t:`J11`, that due to metabolism and traffic is also calculated using coefficients specified in `SUEWS_AnthropogenicEmission.txt` and diurnal patterns specified in `SUEWS_Profiles.txt`.
-Modelled values will be used even if QF is provided in the meteorological forcing file."
+3,"Updated :cite:t:`L11` method using daily (not instantaneous) air temperature (HDD(id-1,3)) using coefficients specified in `SUEWS_AnthropogenicEmission.txt`."
+15,"|NotRecmd|
+QF and FC coming from traffic and human metabolism are calculated from transportation and population statistics, 
+and from buildings following heating and cooling degree day approach according to Järvi et al. 2019 (:cite:t:`L19`). 
+Parameters specified in SUEWS_AnthropogenicEmission.txt and diurnal patterns specified in SUEWS_Profiles.txt will be used. 
+Photosynthesis is simulated using non-rectangular hyberbola equation (:cite:t:`B17`)"
+25,"|NotRecmd|
+QF and Fc coming from traffic and human metabolism are calculated from transportation and population statistics, 
+and from buildings following heating and cooling degree day approach according to Järvi et al. 2019 (:cite:t:`L19`). 
+Parameters specified in SUEWS_AnthropogenicEmission.txt and diurnal patterns specified in SUEWS_Profiles.txt will be used. 
+Photosynthesis is simulated using local model from Bellucco et al. 2017 (:cite:t:`B17`)"
+35,"|NotRecmd|
+QF and FC coming from traffic and human metabolism are calculated from transportation and population statistics, 
+and from buildings following heating and cooling degree day approach according to Järvi et al. 2019 (:cite:t:`L19`). 
+Parameters specified in SUEWS_AnthropogenicEmission.txt and diurnal patterns specified in SUEWS_Profiles.txt will be used. 
+Photosynthesis is simulated using the general model from Bellucco et al. 2017 (:cite:t:`B17`)"
+45,"|Recmd if both QF and FC are simulated|
+QF and FC coming from traffic and human metabolism are calculated from transportation and population statistics, 
+and from buildings following heating and cooling degree day approach according to Järvi et al. 2019 (:cite:t:`L19`). 
+Parameters specified in SUEWS_AnthropogenicEmission.txt and diurnal patterns specified in SUEWS_Profiles.txt will be used. 
+Photosynthesis will be simulated using the surface conductance model (:cite:t:`L19`)."
