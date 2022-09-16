@@ -54,7 +54,7 @@ Input Options
 .. option:: ActivityProfWD
 
 	:Description:
-		Code linking to `ActivityProfWD` in `SUEWS_Profiles.txt`.
+		Code linking to `ActivityProfWD` in `SUEWS_Profiles.txt`. Used with EmissionMethod = 45
 
 	:Configuration:
 		.. csv-table::
@@ -67,7 +67,7 @@ Input Options
 .. option:: ActivityProfWE
 
 	:Description:
-		Code linking to `ActivityProfWE` in `SUEWS_Profiles.txt`.
+		Code linking to `ActivityProfWE` in `SUEWS_Profiles.txt`. Used with EmissionMethod = 45
 
 	:Configuration:
 		.. csv-table::
@@ -185,7 +185,7 @@ Input Options
 
 	:Description:
 		The mean apparent ecosystem quantum. Represents the initial slope of the light-response curve.
-		[umol CO2 umol photons^-1]
+		[umol CO2 umol photons^-1]. Needed if EmissionMethod = 15,25,35
 
 
 	:Configuration:
@@ -333,7 +333,7 @@ Input Options
 
 	:Description:
 
-		The convexity of the curve at light saturation.
+		The convexity of the curve at light saturation. Needed if EmissionMethod = 15,25,35
 
 	:Configuration:
 		.. csv-table::
@@ -347,7 +347,7 @@ Input Options
 
 	:Description:
 
-		Part of the `alpha` coefficient related to the fraction of vegetation.
+		Part of the `alpha` coefficient related to the fraction of vegetation. Needed if EmissionMethod = 15,25,35
 
 	:Configuration:
 		.. csv-table::
@@ -361,7 +361,7 @@ Input Options
 
 	:Description:
 
-		Part of the `beta` coefficient related to the fraction of vegetation.
+		Part of the `beta` coefficient related to the fraction of vegetation. Needed if EmissionMethod = 15,25,35
 
 	:Configuration:
 		.. csv-table::
@@ -984,7 +984,7 @@ Input Options
 .. option:: EnergyUseProfWD
 
 	:Description:
-		Code linking to `EnergyUseProfWD` in `SUEWS_Profiles.txt`.
+		Code linking to `EnergyUseProfWD` in `SUEWS_Profiles.txt`. Used with EmissionMethod = 1-3
 
 	:Configuration:
 		.. csv-table::
@@ -997,7 +997,7 @@ Input Options
 .. option:: EnergyUseProfWE
 
 	:Description:
-		Code linking to `EnergyUseProfWE` in `SUEWS_Profiles.txt`.
+		Code linking to `EnergyUseProfWE` in `SUEWS_Profiles.txt`. Used with EmissionMethod = 1-3
 
 	:Configuration:
 		.. csv-table::
@@ -2834,7 +2834,7 @@ Input Options
 .. option:: PopProfWD
 
 	:Description:
-		Code for population density profile (weekdays) linking to `Code` of `SUEWS_Profiles.txt`.
+		Code for population density profile (weekdays) linking to `Code` of `SUEWS_Profiles.txt`. Used if EmissionMethod = 45.
 
 	:Configuration:
 		.. csv-table::
@@ -2846,7 +2846,7 @@ Input Options
 .. option:: PopProfWE
 
 	:Description:
-		Code for population density profile (weekends) linking to `Code` of `SUEWS_Profiles.txt`.
+		Code for population density profile (weekends) linking to `Code` of `SUEWS_Profiles.txt`. Used if EmissionMethod = 45.
 
 	:Configuration:
 		.. csv-table::
@@ -3930,7 +3930,7 @@ Input Options
 .. option:: TraffProfWD
 
 	:Description:
-		Code for traffic activity profile (weekdays) linking to `Code` of `SUEWS_Profiles.txt`. Not used in v2018a.
+		Code for traffic activity profile (weekdays) linking to `Code` of `SUEWS_Profiles.txt`. Used if EmissionMethod = 45.
 
 	:Configuration:
 		.. csv-table::
@@ -3942,7 +3942,7 @@ Input Options
 .. option:: TraffProfWE
 
 	:Description:
-		Code for traffic activity profile (weekends) linking to `Code` of `SUEWS_Profiles.txt`. Not used in v2018a.
+		Code for traffic activity profile (weekends) linking to `Code` of `SUEWS_Profiles.txt`. Used if EmissionMethod = 45.
 
 	:Configuration:
 		.. csv-table::
