@@ -8,9 +8,9 @@ SUEWS_Conductance.txt contains the parameters needed for the Jarvis
 SUEWS. These values should **not** be changed independently of each
 other. The suggested values below have been derived using datasets for
 Los Angeles and Vancouver (see :cite:t:`J11`) and should be
-used with `gsModel` = 1. An alternative formulation ( `gsModel` =2) uses
+used with `gsModel` = 1. An alternative formulation ( `gsModel` = 2 or `gsModel` = 4) uses
 slightly different functional forms and different coefficients (with
-different units).
+different units). `gsModel` = 2  uses air temperature from the meteorological forcing in calculating photosynthesis and `gsModel` = 4 the local 2-m air temperature simulated within SUEWS.
 
 .. DON'T manually modify the csv file below
 .. as it is always automatically regenrated by each build:
